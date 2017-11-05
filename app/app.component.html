@@ -1,0 +1,26 @@
+<header (click)="chColor(headd)" #headd>
+        <img src="img/Music.png"/> 
+        <div id="mainTitle">Create you music libary</div> 
+</header>
+<main> 
+    <form class="music-form" id="id007" (ngSubmit)="create(); musicForm.reset()" #musicForm="ngForm">
+        <input type="text" id="id008" name="title" [(ngModel)]="newMusicTitle" placeholder="What a band name ?" required>
+        <button type="submit" [disabled]="musicForm.form.invalid">Add to plalist</button>
+    </form>
+    <div class="music-list" *ngIf="musics.length">
+        <div class="music-item" *ngFor="let music of musics" [class.completed] = "music.completed">
+            <button class="checkbox icon" (click)="toggle(music)">
+                <i class="material-icons">{{ music.completed ? 'check_box' : 'check_box_outline_blank'}}</i>
+            </button>
+
+            <span class = "title">{{music.title}}</span>
+
+            <div class="actions">
+                <button class="delete icon" (click)="delete(music)">
+                    <i class="material-icons">delete</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
